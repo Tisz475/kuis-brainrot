@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Brainrot</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background: #ccc;
+    }
+    #result {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #000;
+      background-color: #f8f8f8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Apa Brainrot Kamu?</h1>
+  <div id="quiz"></div>
+  <div id="result"></div>
+
+  <script>
+    const brainrots = [
+      "Tralalero Tralala", "Bombardiro Crocodilo", "Tung Tung Sahur", "Lirili Larilà", "Boneca Ambalabu",
+      "Brr Brr Patapim", "Chimpanzini Bananini", "Bombombini Gusini", "Capuccino Assassino", "Trippi Troppi",
+      "Frigo Camelo", "La Vaca Saturno Saturnita", "Ballerina Cappucina", "U Din Din Din Dun", "Trulimero Trulicina",
+      "Garamaraman Madudungdung", "Girafa Celestre", "Bobrito Bandito", "Fruli Frula", "Ta Ta Sahur",
+      "Pot Hotspot", "Brri Brri Bombicus", "Burbaloni Lulilolli", "Talpa Di Ferro", "Blueberrinni Octopussini",
+      "Glorbo Fruttodrillo", "Cacto Hipopotamo", "Chef Crabracadabra", "Abonono Schimpazinono", "Svinino Bombondino",
+      "Bombardiere Lucertola", "Rhinodino Dildorino", "Tric Trac Baraboom", "Centralucci Nuclearucci",
+      "Orangutini Ananasini", "Espressona Signora", "Zibra Zubra Zibralini", "Graipussi Medussi", "Tigrrullini Watermellini"
+    ];
+
+    const descriptions = brainrots.map(name => `Kamu punya energi seperti ${name} — unik, sulit ditebak, dan penuh kejutan. Kamu tipe yang bikin semua orang penasaran.`);
+
+    const questions = [
+      { question: "Kamu lebih suka ngabisin waktu...", options: ["di taman sendirian", "nongkrong rame", "scroll TikTok sampai pagi", "tidur sepanjang hari", "bikin playlist absurd"] },
+      { question: "Pilih makanan favorit:", options: ["Mie pedas", "Sereal dingin", "Pizza nanas", "Nasi padang campur es krim", "Roti bakar coklat keju"] },
+      { question: "Kalo denger lagu favorit kamu, reaksi kamu?", options: ["Joget auto goyang", "Nangis di pojokan", "Ngomel random", "Replay 100x", "Langsung update status"] },
+      { question: "Kebiasaan pas gabut?", options: ["Ngobrol sama hewan peliharaan", "Liat kipas muter", "Nonton video masak jam 3 pagi", "Bikin teori konspirasi", "Scroll reels absurd"] },
+      { question: "Kalau kamu jadi hewan, kamu bakal jadi...", options: ["Kucing jutek", "Burung cerewet", "Lumba-lumba hype", "Kura-kura santai", "Gorila ngedance"] },
+      { question: "Pilih warna yang paling kamu suka:", options: ["Pink neon", "Hitam legam", "Hijau stabilo", "Biru pastel", "Oranye gonjreng"] },
+      { question: "Sifat yang paling menggambarkan kamu:", options: ["Chaos tapi lucu", "Santai tapi peka", "Kreatif ngasal", "Suka cari perhatian", "Random banget"] },
+      { question: "Kalau disuruh tampil di panggung, kamu...", options: ["Joget tanpa mikir", "Ngomong ngelantur", "Kabur ke belakang", "Berdiri bengong", "Nyanyi fals pede"] },
+      { question: "Ngomongin fashion, gaya kamu...", options: ["Kemeja + crocs", "Kaos band + dasi", "Piyama 24/7", "Kostum karakter", "Outfit misterius"] },
+      { question: "Kalau teman kamu nangis, kamu...", options: ["Ikut nangis rame-rame", "Peluk terus diem", "Ngasih meme biar ketawa", "Ngomongin alien", "Bikin suara aneh"] },
+      { question: "Kamu lebih suka nonton...", options: ["Film horor lucu", "Dokumenter hewan absurd", "Drama alien nangis", "Komedi nggak jelas", "Video TikTok 2 detik"] },
+      { question: "Kalau disuruh milih nama alter ego:", options: ["Mr. Bubur", "Kak Kulkas", "Neng Nasi Goreng", "Lord Panci", "Om Sereal"] },
+      { question: "Apa yang paling bikin kamu ngakak?", options: ["Suara sendawa kucing", "Orang ngelantur", "Parodi Shakespeare", "Suara motor mogok", "Komentar netizen"] },
+      { question: "Kalau kamu jadi presiden, hal pertama yang kamu lakukan:", options: ["Gratisin nasi padang", "Bikin hari nasional TikTok", "Semua sekolah pake kostum", "Bikin taman lompat", "Siaran live tiap pagi"] },
+      { question: "Kalau punya kekuatan super aneh, kamu mau...", options: ["Ngubah suara jadi bebek", "Teleport ke dapur orang", "Membelah pisang dengan pikiran", "Ngilangin suara kentut", "Nari di awan"] },
+    ];
+
+    let currentQuestion = 0;
+    const answerCount = {};
+
+    const quizDiv = document.getElementById("quiz");
+    const resultDiv = document.getElementById("result");
+
+    function showQuestion() {
+      if (currentQuestion >= questions.length) return showResult();
+
+      quizDiv.innerHTML = "";
+      const q = questions[currentQuestion];
+      const qDiv = document.createElement("div");
+      qDiv.className = "question";
+      qDiv.innerHTML = `<h3>${q.question}</h3>`;
+      const optionsDiv = document.createElement("div");
+      optionsDiv.className = "options";
+
+      q.options.forEach(opt => {
+        const randomBrainrot = brainrots[Math.floor(Math.random() * brainrots.length)];
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => {
+          answerCount[randomBrainrot] = (answerCount[randomBrainrot] || 0) + 1;
+          currentQuestion++;
+          showQuestion();
+        };
+        optionsDiv.appendChild(btn);
+      });
+
+      qDiv.appendChild(optionsDiv);
+      quizDiv.appendChild(qDiv);
+    }
+
+    function showResult() {
+      quizDiv.innerHTML = "";
+      const result = Object.entries(answerCount).sort((a, b) => b[1] - a[1])[0][0];
+      const description = descriptions[brainrots.indexOf(result)];
+      resultDiv.innerHTML = `<h2>Brainrot Kamu: ${result}</h2><p>${description}</p>`;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
+
