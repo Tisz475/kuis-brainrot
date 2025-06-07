@@ -6,6 +6,7 @@
   <title>Kuis Brainrot</title>
   <style>
     body {
+      background-color: #c44545;
       font-family: sans-serif;
       max-width: 800px;
       margin: auto;
@@ -20,7 +21,7 @@
       padding: 10px;
       width: 100%;
       border: none;
-      background: #39ca00;
+      background: #0e52b8;
       cursor: pointer;
     }
     .options button:hover {
@@ -51,7 +52,48 @@
       "Orangutini Ananasini", "Espressona Signora", "Zibra Zubra Zibralini", "Graipussi Medussi", "Tigrrullini Watermellini"
     ];
 
-    const descriptions = brainrots.map(name => `Kamu punya energi seperti ${name} — unik, sulit ditebak, dan penuh kejutan. Kamu tipe yang bikin semua orang penasaran.`);
+    const descriptions = [
+  "Tralalero Tralala adalah jiwa yang ceria, selalu membawa keceriaan dan lagu-lagu manis ke mana pun kamu pergi.",
+  "Bombardiro Crocodilo punya energi kuat, penuh semangat dan tidak mudah menyerah walau tantangan datang.",
+  "Tung Tung Tung Tung Tung Tung Tung Tung Tung Sahur adalah sosok yang sabar dan penuh kesabaran, meski kadang suka bikin orang bingung.",
+  "Lirili Larilà adalah pribadi lembut dan penuh imajinasi, selalu melihat dunia dengan warna-warni yang berbeda.",
+  "Boneca Ambalabu itu kreatif dan penuh warna, kamu punya ide-ide liar yang membuat semua orang terpukau.",
+  "Brr Brr Patapim sosok misterius yang kalem tapi menyimpan kejutan yang luar biasa dalam diamnya.",
+  "Chimpanzini Bananini penuh semangat petualang, selalu siap mencoba hal baru dan suka tantangan.",
+  "Bombombini Gusini seperti kembang api, cerah dan memukau tapi kadang tiba-tiba menghilang.",
+  "Capuccino Assassino dingin dan tajam, tapi sebenarnya penuh perhatian dan detail terhadap hal-hal kecil.",
+  "Trippi Troppi adalah jiwa bebas yang tidak terikat aturan, selalu mencari kebebasan dan keseruan.",
+  "Frigo Camelo itu tenang dan tahan banting, mampu bertahan di berbagai kondisi tanpa banyak keluhan.",
+  "La Vaca Saturno Saturnita unik dan penuh teka-teki, kamu suka hal-hal yang gak biasa dan eksentrik.",
+  "Ballerina Cappucina anggun dan penuh gaya, kamu bisa memukau semua orang dengan pesonamu.",
+  "U Din Din Din Din Dun Ma Din Din Din Dun2 penuh ritme dan energi, kamu hidup seperti musik yang tak pernah berhenti.",
+  "Trulimero Trulicina seperti teka-teki, sulit ditebak tapi selalu menarik untuk diikuti.",
+  "Garamaraman dan Madudungdung tak tuntung perkuntung itu liar dan spontan, kamu penuh kejutan yang tak terduga.",
+  "Girafa Celestre tinggi dan elegan, kamu selalu melihat sesuatu dari sudut pandang yang lebih luas.",
+  "Bobrito Bandito penuh selera humor dan nakal, kamu suka bikin orang tertawa dan seringkali jadi pusat perhatian.",
+  "Fruli Frula manis dan ceria, kamu mudah membuat suasana jadi menyenangkan dan ringan.",
+  "Ta Ta Ta Ta Ta Ta Ta Ta Ta Ta Ta Sahur punya energi yang tak pernah habis, selalu siap untuk semangat baru tiap hari.",
+  "Pot Hotspot penuh kehangatan dan perhatian, kamu seperti tempat berkumpul yang nyaman bagi teman-temanmu.",
+  "Brri Brri Bicus Dicus Bombicus seperti ledakan kecil yang bikin heboh, kamu dinamis dan selalu aktif.",
+  "Burbaloni Lulilolli imut dan menggemaskan, kamu membawa aura positif dan kebahagiaan di sekitar.",
+  "Talpa Di Ferro kuat dan tahan banting, kamu tidak mudah goyah oleh masalah dan punya tekad baja.",
+  "Blueberrinni Octopussini kreatif dan serbaguna, kamu bisa melakukan banyak hal sekaligus dengan mudah.",
+  "Glorbo Fruttodrillo seperti kombinasi unik, kamu punya cara pandang dan solusi yang out of the box.",
+  "II Cacto Hipopotamo keras di luar tapi lembut di hati, kamu kuat tapi punya sisi perhatian yang besar.",
+  "Chef Crabracadabra jagoan dapur yang penuh keajaiban, kamu selalu punya trik dan solusi kreatif.",
+  "Abonono Schimpazinono pintar dan cerdik, kamu suka belajar hal baru dan cepat menguasainya.",
+  "Svinino Bombondino punya jiwa bebas dan penuh semangat, kamu tidak suka dibatasi oleh aturan.",
+  "Bombardiere Lucertola tangguh dan cepat, kamu selalu siap menghadapi segala tantangan dengan sigap.",
+  "Rhinodino Dildorino kuat dan berani, kamu seperti pelindung yang setia untuk orang-orang terdekat.",
+  "Tric Trac Baraboom penuh kejutan dan spontan, kamu selalu membuat hari orang lain berwarna.",
+  "Centralucci Nuclearucci seperti pusat energi, kamu penuh kekuatan yang mempengaruhi banyak orang.",
+  "Orangutini Ananasini cerdas dan penuh rasa ingin tahu, kamu selalu menggali hal baru dengan antusias.",
+  "Espressona Signora anggun dan penuh karisma, kamu punya daya tarik yang sulit ditolak.",
+  "Zibra Zubra Zibralini penuh warna dan dinamis, kamu unik dan mudah dikenali dalam keramaian.",
+  "Graipussi Medussi misterius dan memikat, kamu punya aura yang membuat orang ingin tahu lebih banyak.",
+  "Tigrrullini Watermellini kuat dan penuh semangat, kamu tidak pernah berhenti berjuang dan berkembang."
+];
+
 
     const questions = [
       { question: "Kamu lebih suka ngabisin waktu...", options: ["di taman sendirian", "nongkrong rame", "scroll TikTok sampai pagi", "tidur sepanjang hari", "bikin playlist absurd"] },
