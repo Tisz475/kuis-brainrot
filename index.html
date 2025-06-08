@@ -6,7 +6,7 @@
   <title>Kuis Brainrot</title>
   <style>
     body {
-      background-color: #FF0000;
+      background-color: #c44545;
       font-family: sans-serif;
       max-width: 800px;
       margin: auto;
@@ -21,7 +21,7 @@
       padding: 10px;
       width: 100%;
       border: none;
-      background: #FFEA00;
+      background: #0e52b8;
       cursor: pointer;
     }
     .options button:hover {
@@ -114,7 +114,7 @@
     ];
 
     let currentQuestion = 0;
-    const answerCount = {};
+    let answerCount = {};
 
     const quizDiv = document.getElementById("quiz");
     const resultDiv = document.getElementById("result");
@@ -150,7 +150,20 @@
       quizDiv.innerHTML = "";
       const result = Object.entries(answerCount).sort((a, b) => b[1] - a[1])[0][0];
       const description = descriptions[brainrots.indexOf(result)];
-      resultDiv.innerHTML = `<h2>Brainrot Kamu: ${result}</h2><p>${description}</p>`;
+      resultDiv.innerHTML = `
+        <h2>Brainrot Kamu: ${result}</h2>
+        <p>${description}</p>
+        <button id="play-again">Main Lagi</button>
+      `;
+
+      document.getElementById("play-again").onclick = resetQuiz;
+    }
+
+    function resetQuiz() {
+      currentQuestion = 0;
+      answerCount = {};
+      resultDiv.innerHTML = "";
+      showQuestion();
     }
 
     showQuestion();
